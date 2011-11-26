@@ -1,0 +1,1 @@
+[{{ site }}] Bienvenue, il est temps de valider votre adresse

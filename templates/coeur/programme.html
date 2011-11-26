@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block actions %}
+<div>
+		<ul style="display:table; width:100%;">
+			
+			<li style="display:table-cell;"><a href="{% url index %}">< Retour</a></li>
+		<li style="display:table-cell;text-align:right;"><a href="{{ add_url }}">Ajouter</a></li> 
+		</ul>
+		
+	</div>
+{% endblock %}
+{% block content %}
+
+
+<table class="promotion_table">
+	<tr>
+		<th rowspan=2 style="color: #BF2F2F;">
+			{{ promo }}
+		</th>
+		<td>{{promo.nb_matieres}} matieres</td>
+		<td>{{ promo.nb_coef }} coefficient</td>
+		
+	</tr>
+	<tr>
+		<td>{{ promo.nb_seances }} séances</td>
+		<td>
+			{{ promo.nb_heures }} heures de cours
+		</td>
+	</tr>
+</table>
+
+	<table class="matiere_table">
+	{% for dict in programme %}
+	
+		{% for cat, val in dict.items %}
+		<tr class="programme _{{cat.pk}}"><td style="padding-left:10px;">{{cat}}</td><td>heures</td><td>credits</td><td>coef<td></td></tr>
+		<tr class="sous_total _{{cat.pk}}"><td style="padding-left:10px;">total</td><td>{{val.total_heures}}</td><td>{{val.total_credits}}</td><td>{{val.total_coef}}</td><td></td></tr>
+			
+	
+			{% for matiere in val.matieres %}
+				<tr class="matiere_tr {%if forloop.last%}last_td{%endif%}">
+					<td  style="padding-left:30px;{% if forloop.first %}padding-top:20px;  {% endif %}">
+					<a href="{{ matiere.get_absolute_url }}">
+						{{ matiere }}
+					</a>
+					</td>
+					<td class="matiere_infos">
+						{%if matiere.heures %}{{matiere.heures}}{%endif%}
+					</td>
+					<td class="matiere_infos">
+						{%if matiere.credit %}{{matiere.credit}}{%endif%}
+					</td>
+					<td class="matiere_infos">
+						{%if matiere.coef %}{{matiere.coef}}{%endif%}
+					</td>
+					<td class="matiere_infos spe_{{ matiere.specialite.pk }}" style="text-align:center;">
+						{%if matiere.specialite %}{{ matiere.specialite }}{%endif%}
+					</td>
+				</tr>
+			{% endfor %}
+			
+		{% endfor %}
+			
+	{% empty %}
+	rien
+	{% endfor %}
+	<tr class="total"><th style="padding-left:20px;">total</th><td>{{promo.nb_heures}}</td><td>{{promo.nb_credits}}</td><td>{{promo.nb_coef}}</td></tr>
+	</table>
+</ul>
+{% endblock %}

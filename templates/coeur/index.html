@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url export_all %}">Tout exporter en pdf</a>
+<h2>Promotions</h2>
+
+
+{% for promo in promotions %}
+<div class="promotion_div"  style="margin-left:{{forloop.counter0}}0%;">
+<table class="promotion_table">
+	<tr>
+		<th rowspan=2>
+			<a href="{% url programme_promo promo.pk %}">{{ promo }}</a>
+		</th>
+		<td>{{promo.nb_matieres}} matieres</td>
+		<td>{{ promo.nb_coef }} coefficients</td>
+		
+	</tr>
+	<tr>
+		<td>{{ promo.nb_seances }} séances</td>
+		<td>
+			{{ promo.nb_heures }} heures de cours
+		</td>
+	</tr>
+</table>
+</div>
+{% endfor %}
+
+{% endblock %}

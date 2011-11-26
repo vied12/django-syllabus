@@ -1,0 +1,132 @@
+
+
+	<h2>{{ matiere.promotion }} - {{ matiere }}
+		
+	</h2>
+		{% if matiere.specialite %}
+		<div id="specialite" class="spe_{{ matiere.specialite.id }}">
+			spécialité {{ matiere.specialite }}
+		</div>
+		{% endif %}
+
+		
+		<p class="domaine _{{ matiere.domaine.pk }}">{{ matiere.domaine }}</p>
+	<table>
+		<tr>
+			<td>Crédit</td>
+			<td>{{ matiere.credit }}</td>
+		</tr>
+		<tr>
+			<td>Séances</td>
+			<td>{{ matiere.nombre_seances }}</td>
+		</tr>
+		<tr>
+			<td>Heures</td>
+			<td>{{ matiere.heures }}</td>
+		</tr>
+		<tr>
+			<td>Coefficient</td>
+			<td>{{ matiere.coef }}</td>
+		</tr>
+	</table>
+
+
+<div id="responsables" style="float:left;">
+	<h3>Résponsable(s)</h3>
+	<ul>
+		{% for r in matiere.responsables.all %}
+			<li>{% if r.get_full_name %}{{r.get_full_name}}{% else %}{{r}}{% endif %}
+				
+				</li>
+		{% empty %}
+			Aucun résponsable
+		{% endfor %}
+	</ul>
+</div>
+{%comment%}
+<div id="equipe" style="float:right;">
+	<h3>Equipe pédagogique</h3>
+	<ul>
+		{% for p in matiere.equipe_pedagogique.all %}
+			<li>{{p}} ({{ p.email }})</li>
+		{% empty %}
+			Aucun résponsable
+		{% endfor %}
+	</ul>
+</div>
+{%endcomment%}
+<div style="clear:both;"></div>
+
+<div id="description_matiere">
+	
+	{% if matiere.introduction %}
+	<div id="introduction">
+		<h3>Introduction</h3>
+		{{ matiere.introduction|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.objectifs %}
+	<div id="objectifs">
+		<h3>objectifs</h3>
+		{{ matiere.objectifs|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.competences %}
+	<div id="competences">
+		<h3>compétences développées par l'enseignement</h3>
+		{{ matiere.competences|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.certifications %}
+	<div id="certifications">
+		<h3>certifications</h3>
+		{{ matiere.certifications|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.programme %}
+	<div id="programme">
+		<h3>programme du cours</h3>
+		{{ matiere.programme|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.prerequis %}
+	<div id="prerequis">
+		<h3>pré-requis</h3>
+		{{ matiere.prerequis|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.relation %}
+	<div id="relation">
+		<h3>cours suivant</h3>
+		{{ matiere.relation|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.methodes %}
+	<div id="methodes">
+		<h3>méthode et outils de travail</h3>
+		{{ matiere.methodes|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.mode_evaluation %}
+	<div id="mode_evaluation">
+		<h3>mode d'évaluation</h3>
+		{{ matiere.mode_evaluation|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.ressource_reference %}
+	<div id="ressource_reference">
+		<h3>ressources de référence</h3>
+		{{ matiere.ressource_reference|safe }}
+	</div>
+	{% endif %}
+	
+</div>

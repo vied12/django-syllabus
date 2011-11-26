@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Exporation terminée</h2>
+
+<h3>erreurs pour les fichiers suivants:</h3>
+<ol>
+{% for e in erreurs %}
+<li>{{e.promotion}} - {{e.titre}}</li>
+{%empty%}
+Pas d'erreur
+{%endfor%}
+</ol>
+{% endblock %}

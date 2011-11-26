@@ -1,0 +1,7 @@
+Bonjour,
+vous vous êtes inscrit sur {{ site.name }}.
+Il reste encore une dernière étape avant de trouver votre bonheur.
+Veuillez activer votre compte en cliquant ici :
+http://{{ site.domain }}{% url registration_activate activation_key %} 
+
+Vous avez {{ expiration_days }} jours pour l'activer. Sinon faut tout recommencer !

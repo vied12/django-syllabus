@@ -1,0 +1,19 @@
+<div id="menu-top">
+    <ul>
+    	<li>
+    		{% if user.is_authenticated %}
+    		
+	    		{{user}}
+	    		<a href="{% url django.contrib.auth.views.logout %}"> (se déconnecter)</a> | 
+    		{% else %}
+    			<a href="{% url django.contrib.auth.views.login %}?next=/">S'identifier</a> |
+
+    		{% endif %}
+    	</li>
+        <li>
+            <a href="/">{{site.name}}</a> |
+        </li>
+        <li><a href="{% url admin:index %}">Admin</a>
+        </li>
+    </ul>
+</div>

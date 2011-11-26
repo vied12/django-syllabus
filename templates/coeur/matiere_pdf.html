@@ -1,0 +1,142 @@
+
+{% extends "coeur/base_pdf.html" %}
+
+{% block style %}
+dl {margin-bottom:20px; text-align:center;}
+dt {font-size:1.2em; font-weight:bold;display:inline;}
+dd {padding-right:16%;display:inline; color:#BF2F2F;}
+{{block.super}}
+{% endblock %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block title %}{{matiere}}{% endblock %}
+
+{% block content %}
+
+	<h1>{{ matiere.promotion }} - {{ matiere }}
+		{% if matiere.specialite %}
+			(spécialité {{ matiere.specialite }})
+		{% endif %}
+	</h1>
+	
+		<p>{{ matiere.domaine }}</p>
+	<dl>
+	
+		
+		<dt>Crédit:</dt>
+		<dd>{{ matiere.credit }}</dd>
+		
+		<dt>Séances:</dt>
+		<dd>{{ matiere.nombre_seances }}</dd>
+		
+		<dt>Heures:</dt>
+		<dd>{{ matiere.heures }}</dd>
+	</dl>
+
+<div id="responsables" style="float:left;">
+	<h3>Résponsable(s)</h3>
+	<ul>
+		{% for r in matiere.responsables.all %}
+			<li>{{r.get_full_name}}</li>
+		{% empty %}
+			Aucun résponsable
+		{% endfor %}
+	</ul>
+</div>
+{%comment%}
+<div id="equipe" style="float:right;">
+	<h3>Equipe pédagogique</h3>
+	<ul>
+		{% for p in matiere.equipe_pedagogique.all %}
+			<li>{{p}} ({{ p.email }})</li>
+		{% empty %}
+			Aucun résponsable
+		{% endfor %}
+	</ul>
+</div>
+{%endcomment%}
+<div style="clear:both;"></div>
+
+<div id="description_matiere">
+	
+	{% if matiere.introduction %}
+	<div id="introduction">
+		<h3>Introduction</h3>
+		{{ matiere.introduction|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.objectifs %}
+	<div id="objectifs">
+		<h3>objectifs</h3>
+		{{ matiere.objectifs|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.competences %}
+	<div id="competences">
+		<h3>compétences développées par l'enseignement</h3>
+		{{ matiere.competences|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.certifications %}
+	<div id="certifications">
+		<h3>certifications</h3>
+		{{ matiere.certifications|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.programme %}
+	<div id="programme">
+		<h3>programme du cours</h3>
+		{{ matiere.programme|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.prerequis %}
+	<div id="prerequis">
+		<h3>pré-requis</h3>
+		{{ matiere.prerequis|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.relation %}
+	<div id="relation">
+		<h3>cours suivant</h3>
+		{{ matiere.relation|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.methodes %}
+	<div id="methodes">
+		<h3>méthode et outils de travail</h3>
+		{{ matiere.methodes|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.mode_evaluation %}
+	<div id="mode_evaluation">
+		<h3>mode d'évaluation</h3>
+		{{ matiere.mode_evaluation|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.ressource_reference %}
+	<div id="ressource_reference">
+		<h3>ressources de référence</h3>
+		{{ matiere.ressource_reference|safe }}
+	</div>
+	{% endif %}
+	
+	{% if matiere.commentaires %}
+	<div id="commentaires">
+		<h3>commentaires</h3>
+		{{ matiere.commentaires|safe }}
+	</div>
+	{% endif %}
+</div>
+{%endblock%}
